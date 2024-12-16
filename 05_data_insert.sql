@@ -1,5 +1,4 @@
 DECLARE
-    -- Ügyfél adatok változói
     v_customerID customers.customerID%TYPE;
     v_name customers.name%TYPE;
     v_address customers.address%TYPE;
@@ -7,7 +6,6 @@ DECLARE
     v_email customers.email%TYPE;
     v_driver_license_number customers.driver_license_number%TYPE;
 
-    -- Jármû adatok változói
     v_vehicleID vehicles.vehicleID%TYPE;
     v_license_plate vehicles.license_plate%TYPE;
     v_brand vehicles.brand%TYPE;
@@ -18,7 +16,6 @@ DECLARE
     v_last_inspection vehicles.last_inspection%TYPE;
     v_inspection_expiration vehicles.inspection_expiration%TYPE;
 
-    -- Mûszaki vizsga adatok változói
     v_inspectionID inspections.inspectionID%TYPE;
     v_inspection_date inspections.inspection_date%TYPE;
     v_inspector_name inspections.inspector_name%TYPE;
@@ -27,7 +24,7 @@ DECLARE
     v_expiry_date inspections.expiry_date%TYPE;
 
 BEGIN
-    -- Ügyfél adatainak bekérése és mentése
+
     v_customerID := &customerID;
     v_name := '&name';
     v_address := '&address';
@@ -40,14 +37,13 @@ BEGIN
 
     DBMS_OUTPUT.PUT_LINE('Új ügyfél hozzáadva: ' || v_name);
 
-    -- Jármû adatainak bekérése és mentése
     v_vehicleID := &vehicleID;
     v_license_plate := '&license_plate';
     v_brand := '&brand';
     v_model := '&model';
     v_year_of_manifacture := &year_of_manifacture;
     v_vin := '&vin';
-    v_owner_id := v_customerID; -- Az új ügyfélhez kapcsoljuk
+    v_owner_id := v_customerID; 
     v_last_inspection := TO_DATE('&last_inspection', 'YYYY-MM-DD');
     v_inspection_expiration := TO_DATE('&inspection_expiration', 'YYYY-MM-DD');
 
@@ -56,7 +52,6 @@ BEGIN
 
     DBMS_OUTPUT.PUT_LINE('Új jármû hozzáadva rendszámmal: ' || v_license_plate);
 
-    -- Mûszaki vizsga adatainak bekérése és mentése
     v_inspectionID := &inspectionID;
     v_inspection_date := TO_DATE('&inspection_date', 'YYYY-MM-DD');
     v_inspector_name := '&inspector_name';

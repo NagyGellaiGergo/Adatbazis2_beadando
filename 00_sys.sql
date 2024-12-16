@@ -74,6 +74,17 @@ ALTER TABLE vehicles add CONSTRAINT ownerid_fk foreign key(owner_id) references 
 COMMENT ON column inspections.result IS 'Vizsga eredmenye';
 COMMENT ON column inspections.remarks IS 'Megjegyzesek, hibak leirasa';
 
+CREATE TABLE audit_log (
+    log_id NUMBER PRIMARY KEY,
+    table_name VARCHAR2(50) NOT NULL,
+    operation VARCHAR2(10) NOT NULL, 
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_by VARCHAR2(100), 
+    old_values CLOB, 
+    new_values CLOB 
+);
+
+
 INSERT INTO customers
   (customerid
   ,NAME

@@ -1,4 +1,4 @@
-DECLARE
+WDECLARE
   CURSOR inspections_by_month IS
     SELECT to_char(expiry_date, 'YYYY-MM') AS MONTH
           ,COUNT(*) AS total_inspections

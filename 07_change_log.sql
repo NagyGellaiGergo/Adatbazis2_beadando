@@ -1,3 +1,5 @@
+CREATE SEQUENCE audit_seq start with 100;
+
 CREATE OR REPLACE TRIGGER trg_customers_audit
 AFTER INSERT OR UPDATE OR DELETE ON customers
 FOR EACH ROW
@@ -40,8 +42,9 @@ BEGIN
     END IF;
 
     
-    INSERT INTO audit_log (table_name, operation_type, old_data, new_data)
+    INSERT INTO audit_log (id, table_name, operation_type, old_data, new_data)
     VALUES (
+        audit_seq.nextval,
         'customers',
         v_operation_type,
         v_old_data,
@@ -94,8 +97,9 @@ BEGIN
         '}';
     END IF;
 
-    INSERT INTO audit_log (table_name, operation_type, old_data, new_data)
+    INSERT INTO audit_log (id, table_name, operation_type, old_data, new_data)
     VALUES (
+        audit_seq.nextval,
         'vehicles',
         v_operation_type,
         v_old_data,
@@ -144,8 +148,9 @@ BEGIN
         '}';
     END IF;
 
-    INSERT INTO audit_log (table_name, operation_type, old_data, new_data)
+    INSERT INTO audit_log (id, table_name, operation_type, old_data, new_data)
     VALUES (
+        audit_seq.nextval,
         'inspections',
         v_operation_type,
         v_old_data,

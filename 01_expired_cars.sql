@@ -1,4 +1,4 @@
-DECLARE
+CREATE OR REPLACE PROCEDURE show_expired_cars IS
     CURSOR expired_cars_cursor IS
         SELECT v.license_plate,
                v.brand,

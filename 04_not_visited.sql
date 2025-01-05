@@ -1,4 +1,4 @@
-DECLARE
+CREATE OR REPLACE PROCEDURE customers_not_visited IS
   CURSOR customers_not_visited IS
     SELECT c.customerid
           ,c.name
@@ -17,8 +17,7 @@ BEGIN
   dbms_output.put_line('Ügyfél ID | Ügyfél neve | Utolsó szerviz látogatás dátuma');
   dbms_output.put_line('----------------------------------------------------------');
 
-  FOR customer_record IN customers_not_visited
-  LOOP
+  FOR customer_record IN customers_not_visited LOOP
     dbms_output.put_line(customer_record.customerid || ' | ' ||
                          customer_record.name || ' | ' ||
                          nvl(to_char(customer_record.last_inspection_date,

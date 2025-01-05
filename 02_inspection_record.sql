@@ -1,4 +1,4 @@
-WDECLARE
+CREATE OR REPLACE PROCEDURE top_inspection_month IS
   CURSOR inspections_by_month IS
     SELECT to_char(expiry_date, 'YYYY-MM') AS MONTH
           ,COUNT(*) AS total_inspections
@@ -12,10 +12,9 @@ BEGIN
   dbms_output.put_line('Ebben a hónapban lesz várhatóan a legtöbb mûszaki vizsga');
   dbms_output.put_line('-----------------------------');
 
-  FOR inspection_record IN inspections_by_month
-  LOOP
+  FOR inspection_record IN inspections_by_month LOOP
     dbms_output.put_line(inspection_record.month || ' | ' ||
                          inspection_record.total_inspections);
-    EXIT;
+    EXIT; 
   END LOOP;
 END;

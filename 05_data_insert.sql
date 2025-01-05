@@ -1,4 +1,4 @@
-DECLARE
+ï»¿CREATE OR REPLACE PROCEDURE data_insert AS
     v_customerID customers.customerID%TYPE;
     v_name customers.name%TYPE;
     v_address customers.address%TYPE;
@@ -35,7 +35,7 @@ BEGIN
     INSERT INTO customers (customerID, name, address, phone_number, email, driver_license_number)
     VALUES (v_customerID, v_name, v_address, v_phone_number, v_email, v_driver_license_number);
 
-    DBMS_OUTPUT.PUT_LINE('Új ügyfél hozzáadva: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Ãšj Ã¼gyfÃ©l hozzÃ¡adva: ' || v_name);
 
     v_vehicleID := &vehicleID;
     v_license_plate := '&license_plate';
@@ -50,7 +50,7 @@ BEGIN
     INSERT INTO vehicles (vehicleID, license_plate, brand, model, year_of_manifacture, vin, owner_id, last_inspection, inspection_expiration)
     VALUES (v_vehicleID, v_license_plate, v_brand, v_model, v_year_of_manifacture, v_vin, v_owner_id, v_last_inspection, v_inspection_expiration);
 
-    DBMS_OUTPUT.PUT_LINE('Új jármû hozzáadva rendszámmal: ' || v_license_plate);
+    DBMS_OUTPUT.PUT_LINE('Ãšj jÃ¡rmÃ» hozzÃ¡adva rendszÃ¡mmal: ' || v_license_plate);
 
     v_inspectionID := &inspectionID;
     v_inspection_date := TO_DATE('&inspection_date', 'YYYY-MM-DD');
@@ -62,6 +62,6 @@ BEGIN
     INSERT INTO inspections (inspectionID, vehicleID, inspection_date, inspector_name, result, remarks, expiry_date)
     VALUES (v_inspectionID, v_vehicleID, v_inspection_date, v_inspector_name, v_result, v_remarks, v_expiry_date);
 
-    DBMS_OUTPUT.PUT_LINE('Új mûszaki vizsga hozzáadva: ' || v_inspectionID);
+    DBMS_OUTPUT.PUT_LINE('Ãšj mÃ»szaki vizsga hozzÃ¡adva: ' || v_inspectionID);
 END;
 /
